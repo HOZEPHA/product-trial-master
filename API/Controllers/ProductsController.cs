@@ -16,14 +16,14 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
   /// <returns></returns>
   [AllowAnonymous]
   [HttpGet]
-  public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
+  public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
   {
     var Products = await context.Products.ToListAsync();
 
     // Use AutoMapper to map products to ProductDto
-    var productDtos = mapper.Map<List<ProductDto>>(Products);
+    var productDtos = mapper.Map<List<Product>>(Products);
 
-    return Ok(productDtos);
+    return Ok(Products);
   }
 
   //TODO : Use CQRS pattern query to get a product by its ID
