@@ -31,9 +31,8 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
   /// </summary>
   /// <param name="id"></param>
   /// <returns></returns>
-  [Authorize]
   [HttpGet("{id:int}")]
-  public async Task<ActionResult<Product>> GetProduct(int id)
+  public async Task<ActionResult<Product>> GetProducts(int id)
   {
     var Product = await context.Products.FindAsync(id);
     if (Product == null) return NotFound();
