@@ -17,7 +17,7 @@ Clone the project from GitHub:
 
 git clone https://github.com/HOZEPHA/product-trial-master.git
 cd front (for the Front-End Angular 18 SPA project) using vscode terminal
-cd back (for the .Net Back-End API Project) using vscode terminal
+cd API (for the .Net Back-End API Project) using vscode terminal
 
 ✅ Prerequisites
 
@@ -36,6 +36,19 @@ SQLite (Check with sqlite3 --version)
 2️⃣ VS Code Extensions
 
 Install these extensions in VS Code for a smooth development experience:
+alexcvzz.vscode-sqlite
+
+angular.ng-template
+github.copilot
+github.copilot-chat
+github.remotehub
+ms-dotnettools.csdevkit
+ms-dotnettools.csharp
+ms-dotnettools.vscode-dotnet-runtime
+ms-vscode.azure-repos
+ms-vscode.remote-repositories
+patcx.vscode-nuget-gallery
+pkief.material-icon-theme
 
 C# – Required for .NET development
 
@@ -49,7 +62,7 @@ Backend: .NET 9 API Setup
 
 Navigate to the backend folder using the terminal:
 
-cd back
+cd API
 
 Restore dependencies:
 
@@ -89,7 +102,7 @@ Open two separate terminals in VS Code:
 
 Terminal 1: Run the backend
 
-cd back
+cd API
 dotnet run (or dotnet watch run to enable the hot realod -- which is not perfect )
 
 Terminal 2: Run the frontend
