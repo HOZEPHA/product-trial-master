@@ -1,46 +1,56 @@
 <p-toolbar [style]="{ height: '100px' }">
-    <div class="p-toolbar-group-start">
-        <img src="assets/icons/icon-72x72.png" alt="logo" />
+  <div class="p-toolbar-group-start">
+    <img src="assets/icons/icon-72x72.png" alt="logo" />
+    {{ title }}
+  </div>
+  <div class="p-toolbar-group-end">
+    <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+    @if(accountService.currentUser()) {
+    <div dropdown class="dropdown">
+      <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
+        Welcome User
+      </a>
+      <button (click)="logout()" class="btn btn-outline-success me-2">Logout</button>
     </div>
-    <div class="p-toolbar-group-center">
-        {{ title }}
+    } @if (!accountService.currentUser()) {
+    <div>
+      <form
+        #loginForm="ngForm"
+        (ngSubmit)="login()"
+        class="d-flex align-items-center gap-2"
+        autocomplete="off"
+      >
+        <input
+          class="form-control"
+          [(ngModel)]="model.email"
+          name="email"
+          required="true"
+          type="email"
+          placeholder="Email"
+        />
+        <input
+          class="form-control"
+          name="password"
+          [(ngModel)]="model.password"
+          required="true"
+          placeholder="Password"
+          type="password"
+        />
+        <button class="btn btn-success me-2" type="submit">Login</button>
+      </form>
     </div>
-    <div class="p-toolbar-group-end">
-        <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
-        @if(true) {
-            <div dropdown class="dropdown">
-                <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
-                    Welcome User
-                </a>
-                <button class="btn btn-outline-success me-2">Logout</button> 
-            </div>
-            }
-    
-            @if (true) {
-            <div>
-                <form  class="d-flex align-items-center gap-2" autocomplete="off">
-                    <input class="form-control" name="username"  required="true" type="text"
-                        placeholder="Username">
-                    <input class="form-control" name="password"  required="true"
-                        placeholder="Password" type="password">
-                    <button class="btn btn-success me-2" type="submit">Login</button>
-                </form>
-            </div>
-            }
-    </div>
-
+    }
+  </div>
 </p-toolbar>
-<p-splitter 
-    [panelSizes]="[20, 80]" 
-    [style]="{ height: 'calc(100vh - 100px)' }">
-    <ng-template pTemplate>
-        <div class="w-full">
-            <app-panel-menu />
-        </div>
-    </ng-template>
-    <ng-template pTemplate>
-        <div class="w-full app-content">
-            <router-outlet></router-outlet>
-        </div>
-    </ng-template>
+<p-splitter [panelSizes]="[20, 80]" [style]="{ height: 'calc(100vh - 100px)' }">
+  <ng-template pTemplate>
+    <div class="w-full">
+      <app-panel-menu />
+    </div>
+  </ng-template>
+  <ng-template pTemplate>
+    <div class="w-full app-content">
+      <router-outlet></router-outlet>
+    </div>
+  </ng-template>
 </p-splitter>
