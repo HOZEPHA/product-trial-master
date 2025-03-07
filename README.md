@@ -1,6 +1,8 @@
 🏆 Product Trial Master | ALTEN Bordeaux 🚀
 🔹 Technical Assessment | Angular 18 + .NET 9 + SQLite
 
+****************************************Solution*******************************
+
 Overview
 
 This project is a full-stack application using:
@@ -132,12 +134,10 @@ Feel free to contribute by submitting a pull request or reporting issues.
 
 🏆 Author
 
-Developed by [Hozepha]GitHub: https://github.com/HOZEPHA in collaboration with ALTEN (all rights reserved)
+Developed by [Hozepha]GitHub: https://github.com/HOZEPHA in collaboration with [ALTEN](all rights reserved)
 
 
-
-
-
+****************************************Consignes*******************************
 # Consignes
 
 - Vous êtes développeur front-end : vous devez réaliser les consignes décrites dans le chapitre [Front-end](#Front-end)

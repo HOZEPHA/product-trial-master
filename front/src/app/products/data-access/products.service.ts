@@ -2,20 +2,21 @@ import { Injectable, inject, signal } from "@angular/core";
 import { Product } from "./product.model";
 import { HttpClient } from "@angular/common/http";
 import { catchError, Observable, of, tap } from "rxjs";
+import { environment } from "environments/environment";
 
 @Injectable({
     providedIn: "root"
 }) export class ProductsService {
 
     private readonly http = inject(HttpClient);
-    private readonly path = "/api/products";
+    private readonly path = environment.Apiurl;
     
     private readonly _products = signal<Product[]>([]);
 
     public readonly products = this._products.asReadonly();
 
     public get(): Observable<Product[]> {
-        return this.http.get<Product[]>(this.path).pipe(
+        return this.http.get<Product[]>(this.path + '/products').pipe(
             catchError((error) => {
                 return this.http.get<Product[]>("assets/products.json");
             }),
@@ -24,7 +25,7 @@ import { catchError, Observable, of, tap } from "rxjs";
     }
 
     public create(product: Product): Observable<boolean> {
-        return this.http.post<boolean>(this.path, product).pipe(
+        return this.http.post<boolean>(this.path + '/products', product).pipe(
             catchError(() => {
                 return of(true);
             }),
