@@ -1,3 +1,129 @@
+Product-Trial-Maste Technical Assesment ALTEN Bordeaux
+
+Overview
+
+This project is a full-stack application using:
+
+Backend: .NET 9
+
+Database: SQLite
+
+Frontend: Angular 18
+
+📂 Repository
+
+Clone the project from GitHub:
+
+git clone https://github.com/HOZEPHA/product-trial-master.git
+cd front (for the Front-End Angular 18 SPA project) using vscode terminal
+cd back (for the .Net Back-End API Project) using vscode terminal
+
+✅ Prerequisites
+
+1️⃣ Install Required Software
+
+Ensure you have the following installed before running the application:
+
+Visual Studio Code
+
+.NET 9 SDK (Check with dotnet --version)
+
+Node.js (Latest LTS Version) (Check with node --version)
+
+SQLite (Check with sqlite3 --version)
+
+2️⃣ VS Code Extensions
+
+Install these extensions in VS Code for a smooth development experience:
+
+C# – Required for .NET development
+
+Angular Essentials – Recommended for Angular development
+
+SQLite – Helps manage SQLite database
+
+🚀 Setup Instructions
+
+Backend: .NET 9 API Setup
+
+Navigate to the backend folder using the terminal:
+
+cd back
+
+Restore dependencies:
+
+dotnet restore
+
+Apply database migrations (if needed):
+
+dotnet ef database update
+
+Run the backend server:
+
+dotnet run
+
+The backend should now be running at:http://localhost:5000 (or the port defined in launchSettings.json).
+
+Frontend: Angular 18 Setup
+
+Navigate to the frontend folder using the terminal:
+
+cd front
+
+Install dependencies:
+
+npm install
+
+Start the Angular development server:
+
+ng serve
+
+The frontend should now be running at:http://localhost:4200
+
+🎯 Running Backend & Frontend Together
+
+To run both the backend and frontend simultaneously:
+
+Open two separate terminals in VS Code:
+
+Terminal 1: Run the backend
+
+cd back
+dotnet run (or dotnet watch run to enable the hot realod -- which is not perfect )
+
+Terminal 2: Run the frontend
+
+cd front
+ng serve (shortcut ng s --o)
+
+🛠 Database Configuration (SQLite)
+
+The project uses SQLite as the database.
+
+The default configuration is in appsettings.json inside the backend folder.
+
+If you need to apply database migrations:
+
+dotnet ef database update
+
+To view the database, open it using a SQLite client or the VS Code SQLite Extension.
+
+📜 License
+
+This project is licensed under the MIT License.
+
+💡 Contributions
+
+Feel free to contribute by submitting a pull request or reporting issues.
+
+🏆 Author
+
+Developed by [Hozepha]GitHub: https://github.com/HOZEPHA in collaboration with ALTEN (all rights reserved)
+
+
+
+
+
 # Consignes
 
 - Vous êtes développeur front-end : vous devez réaliser les consignes décrites dans le chapitre [Front-end](#Front-end)
