@@ -38,4 +38,55 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
     if (Product == null) return NotFound();
     return Ok(Product);
   }
+
+  // PUT: api/products/1000
+  [HttpPut("{id}")]
+  public async Task<IActionResult> UpdateProduct(int id, Product updatedProduct)
+  {
+    if (id != updatedProduct.Id)
+    {
+      return BadRequest("Product ID mismatch");
+    }
+
+    var product = await context.Products.FindAsync(id);
+    if (product == null)
+    {
+      return NotFound();
+    }
+
+    // Update product fields
+    product.Name = updatedProduct.Name;
+    product.Description = updatedProduct.Description;
+    product.Price = updatedProduct.Price;
+    product.Quantity = updatedProduct.Quantity;
+    product.Category = updatedProduct.Category;
+    product.Image = updatedProduct.Image;
+    product.InternalReference = updatedProduct.InternalReference;
+    product.ShellId = updatedProduct.ShellId;
+    product.InventoryStatus = updatedProduct.InventoryStatus;
+    product.Rating = updatedProduct.Rating;
+    product.UpdatedAt = DateTime.UtcNow;
+
+    // Save changes to the database
+    await context.SaveChangesAsync();
+
+    return NoContent(); // Return 204 No Content on success
+  }
+
+  // DELETE: api/products/1000
+  [HttpDelete("{id}")]
+  public async Task<IActionResult> DeleteProduct(int id)
+  {
+    var product = await context.Products.FindAsync(id);
+    if (product == null)
+    {
+      return NotFound();
+    }
+
+    // Remove the product from the database
+    context.Products.Remove(product);
+    await context.SaveChangesAsync();
+
+    return NoContent(); // Return 204 No Content on success
+  }
 }

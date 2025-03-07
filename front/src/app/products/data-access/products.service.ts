@@ -34,7 +34,7 @@ import { environment } from "environments/environment";
     }
 
     public update(product: Product): Observable<boolean> {
-        return this.http.patch<boolean>(`${this.path}/${product.id}`, product).pipe(
+        return this.http.patch<boolean>(`${this.path + '/products'}/${product.id}`, product).pipe(
             catchError(() => {
                 return of(true);
             }),
@@ -45,7 +45,7 @@ import { environment } from "environments/environment";
     }
 
     public delete(productId: number): Observable<boolean> {
-        return this.http.delete<boolean>(`${this.path}/${productId}`).pipe(
+        return this.http.delete<boolean>(`${this.path + '/products'}/${productId}`).pipe(
             catchError(() => {
                 return of(true);
             }),
