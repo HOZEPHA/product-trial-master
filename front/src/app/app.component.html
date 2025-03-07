@@ -8,9 +8,9 @@
     @if(accountService.currentUser()) {
     <div dropdown class="dropdown">
       <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
-        Welcome User
+        Welcome {{accountService.currentUser()?.email}}
       </a>
-      <button (click)="logout()" class="btn btn-outline-success me-2">Logout</button>
+      <p-button label="Logout" (onClick)="logout()" type="submit" severity="success" />
     </div>
     } @if (!accountService.currentUser()) {
     <div>
@@ -21,23 +21,27 @@
         autocomplete="off"
       >
         <input
-          class="form-control"
+          pInputText
+          pSize="small"
           [(ngModel)]="model.email"
           name="email"
           required="true"
           type="email"
           placeholder="Email"
+          style="margin-right: 5px; margin-left: 5px;"
         />
         <input
-          class="form-control"
+          pInputText
           name="password"
           [(ngModel)]="model.password"
           required="true"
           placeholder="Password"
           type="password"
+          placeholder="Normal"
+          style="margin-right: 5px;"
         />
-        <button class="btn btn-success me-2" type="submit">Login</button>
-      </form>
+        <p-button label="Login" type="submit" severity="success" />
+      </form>      
     </div>
     }
   </div>

@@ -6,13 +6,15 @@ import { PanelMenuComponent } from "./shared/ui/panel-menu/panel-menu.component"
 import { AccountService } from "./account/_services/account.service";
 import { User } from "./account/_models/user";
 import { FormsModule } from "@angular/forms";
+import { ButtonModule } from "primeng/button";
+import { InputTextModule } from "primeng/inputtext";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
   standalone: true,
-  imports: [FormsModule,RouterModule, SplitterModule, ToolbarModule, PanelMenuComponent],
+  imports: [InputTextModule, FormsModule,RouterModule, SplitterModule, ToolbarModule, PanelMenuComponent, ButtonModule]
 })
 export class AppComponent {
   accountService = inject(AccountService);

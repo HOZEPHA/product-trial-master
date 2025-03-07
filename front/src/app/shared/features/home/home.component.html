@@ -2,4 +2,11 @@
   <p class="m-0">
       Bienvenue sur {{ appTitle }} !
   </p>
+  @if (!registerMode) {
+    <p>Vous n'avez pas encore de compte? Créez en un maintenant</p>
+    <p-button label="Créer un compte"  type="button" (click)="registerToggle()" severity="success" />
+  } @else {
+    <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+  }
+
 </p-card>
