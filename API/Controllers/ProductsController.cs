@@ -26,6 +26,7 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
     return Ok(productDtos);
   }
 
+  //TODO : Use CQRS pattern query to get a product by its ID
   /// <summary>
   /// This method returns a single product by its ID.
   /// </summary>
@@ -39,6 +40,7 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
     return Ok(Product);
   }
 
+  //TODO : Use CQRS pattern command to create a new product
   // PUT: api/products/1000
   [HttpPut("{id}")]
   public async Task<IActionResult> UpdateProduct(int id, Product updatedProduct)
@@ -67,7 +69,7 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
     product.Rating = updatedProduct.Rating;
     product.UpdatedAt = DateTime.UtcNow;
 
-     context.Products.Update(product); // Update the product in the database
+    context.Products.Update(product); // Update the product in the database
     // Save changes to the database
     await context.SaveChangesAsync();
 
