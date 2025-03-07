@@ -7,7 +7,28 @@
     </div>
     <div class="p-toolbar-group-end">
         <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+        @if(true) {
+            <div dropdown class="dropdown">
+                <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
+                    Welcome User
+                </a>
+                <button class="btn btn-outline-success me-2">Logout</button> 
+            </div>
+            }
+    
+            @if (true) {
+            <div>
+                <form  class="d-flex align-items-center gap-2" autocomplete="off">
+                    <input class="form-control" name="username"  required="true" type="text"
+                        placeholder="Username">
+                    <input class="form-control" name="password"  required="true"
+                        placeholder="Password" type="password">
+                    <button class="btn btn-success me-2" type="submit">Login</button>
+                </form>
+            </div>
+            }
     </div>
+
 </p-toolbar>
 <p-splitter 
     [panelSizes]="[20, 80]" 

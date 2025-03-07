@@ -67,6 +67,7 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
     product.Rating = updatedProduct.Rating;
     product.UpdatedAt = DateTime.UtcNow;
 
+     context.Products.Update(product); // Update the product in the database
     // Save changes to the database
     await context.SaveChangesAsync();
 
