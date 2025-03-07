@@ -1,4 +1,5 @@
-Product-Trial-Maste Technical Assesment ALTEN Bordeaux
+🏆 ProdTrial Master | ALTEN Bordeaux 🚀
+🔹 Technical Assessment | Angular 18 + .NET 9 + SQLite
 
 Overview
 
