@@ -3,6 +3,7 @@ import { inject, Injectable, signal } from '@angular/core';
 import { User } from '../_models/user';
 import { map } from 'rxjs';
 import { environment } from 'environments/environment';
+import { UserRegister } from '../_models/userRegister';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class AccountService {
   currentUser = signal<User | null>(null);
 
   login(model: any) {
-    return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
+    return this.http.post<User>(this.baseUrl + '/account/login', model).pipe(
       map(user => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
@@ -27,7 +28,7 @@ export class AccountService {
   }
 
   register(model: any) {
-    return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
+    return this.http.post<UserRegister>(this.baseUrl + '/account/register', model).pipe(
       map(user => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));

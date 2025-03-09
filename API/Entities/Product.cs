@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace API.Entities
 {
@@ -66,6 +67,7 @@ namespace API.Entities
         /// <summary>
         /// This property stores the inventory status of the product.
         /// </summary>
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public InventoryStatus InventoryStatus { get; set; }
 
         /// <summary>

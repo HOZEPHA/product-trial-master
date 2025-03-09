@@ -76,6 +76,26 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
     return NoContent(); // Return 204 No Content on success
   }
 
+  [HttpPost]
+  public async Task<IActionResult> CreateProduct(ProductDto productDto)
+  {
+    if (productDto == null)
+    {
+      return BadRequest("Invalid product data.");
+    }
+
+    var product = mapper.Map<Product>(productDto);
+
+    product.CreatedAt = DateTime.UtcNow;
+    product.UpdatedAt = DateTime.UtcNow;
+    
+    context.Products.Add(product);
+    await context.SaveChangesAsync();
+
+    return Ok(product);
+  }
+
+
   // DELETE: api/products/1000
   [HttpDelete("{id}")]
   public async Task<IActionResult> DeleteProduct(int id)

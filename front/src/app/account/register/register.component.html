@@ -1,35 +1,64 @@
-<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete = "off">
-    <h2 class="text-center text-primary">Création de compte</h2>
-    <hr>
-    <div class="mb-3 form-floating">
-        <label > Username </label>
-        <input 
-        pInputText
-        type="text" 
-        class="form-control" 
-        name="username" 
-        [(ngModel)]="model.username" 
-        placeholder="Username" 
-        #username="ngModel"
-            >
-    </div>
-
-    <div class="mb-3 form-floating">
+<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off" [scrollTop]="true">
+  <h2 class="text-center text-primary">Création de compte</h2>
+  <hr />
+  <div class="row">
+    <div class="col-4">
+      <div class="mb-3 form-floating">
+        <label> Username </label>
+        <input
+          pInputText
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="model.username"
+          placeholder="Username"
+          #username="ngModel"
+        />
+      </div>
+      <div class="mb-3 form-floating">
+        <label> Email </label>
+        <input
+          pInputText
+          type="text"
+          class="form-control"
+          name="email"
+          [(ngModel)]="model.email"
+          placeholder="Email"
+          #username="ngModel"
+        />
+      </div>
+      <div class="mb-3">
+        <label> First Name </label>
+        <input
+          pInputText
+          type="text"
+          class="form-control"
+          name="firstname"
+          [(ngModel)]="model.firstname"
+          placeholder="FirstName"
+          #username="ngModel"
+        />
+      </div>
+      <div class="mb-3 form-floating">
         <label> Password </label>
-        <input 
-        pInputText
-        type="password" 
-        class="form-control" 
-        name="password" 
-        [(ngModel)]="model.password" 
-        placeholder="Password"
-        #username="ngModel"
-            >
-
+        <input
+          pInputText
+          type="password"
+          class="form-control"
+          name="password"
+          [(ngModel)]="model.password"
+          placeholder="Password"
+          #username="ngModel"
+        />
+      </div>
     </div>
+    
+  </div>
 
-    <div class="form-group text-center">
-        <button class="btn btn-success me-2" type="submit">Register</button>
-        <button class="btn btn-default me-2" (click)="cancel()" type="button">Cancel</button>
-    </div>
+  <div class="form-group text-center">
+    <button class="btn btn-success me-2" type="submit">Register</button>
+    <button class="btn btn-default me-2" (click)="cancel()" type="button">
+      Cancel
+    </button>
+  </div>
 </form>

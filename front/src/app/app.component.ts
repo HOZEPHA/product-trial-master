@@ -28,7 +28,7 @@ export class AppComponent {
     this.accountService.login(this.model).subscribe({
       next: (response) => {
       console.log('Logged in successfully');
-       void this.router.navigateByUrl('/members');  
+       void this.router.navigateByUrl('/home');  
       },
       error: (error) => {
         console.log(error.error);
