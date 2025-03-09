@@ -1,17 +1,30 @@
 🏆 Product Trial Master | ALTEN Bordeaux 🚀
 🔹 Technical Assessment | Angular 18 + .NET 9 + SQLite
 
-****************************************Solution*******************************
+# *******Solution*******
 
 Overview
 
-This project is a full-stack application using:
+# 🛒 Full-Stack E-Commerce Application  
 
-Backend: .NET 9
+This project is a **full-stack e-commerce application** where a user can **manage a list of products and a basket**.  
 
-Database: SQLite
+## 🏗️ Technology Stack  
 
-Frontend: Angular 18
+### 🔧 Backend  
+![.NET](https://img.shields.io/badge/Backend-.NET%209-blue?style=flat-square&logo=dotnet)  
+Powered by **.NET 9** for a robust and scalable backend.  
+
+### 💾 Database  
+![SQLite](https://img.shields.io/badge/Database-SQLite-blue?style=flat-square&logo=sqlite)  
+📌 When running the .NET Web API project, a **DBInitializer** provides:  
+  - An initial list of products  
+  - An initial admin user to log in with: `admin@admin.fr / Admin1234`  
+
+### 🎨 Frontend  
+![Angular](https://img.shields.io/badge/Frontend-Angular%2018-red?style=flat-square&logo=angular)  
+Built with **Angular 18** for a dynamic and responsive UI.  
+
 
 📂 Repository
 
