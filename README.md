@@ -1,6 +1,6 @@
 # Solution
 
-Please checkout to the Dev branch to see my solution proposal for this assignment
+Please switch to the Dev branch to see my solution proposal for this assignment
 
 # Consignes
 
