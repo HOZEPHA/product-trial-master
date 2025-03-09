@@ -97,7 +97,7 @@ Frontend: Angular 18 Setup
 
 Navigate to the frontend folder using the terminal:
 
-cd front
+cd Client
 
 Install dependencies:
 
@@ -122,7 +122,7 @@ dotnet run (or dotnet watch run to enable the hot realod -- which is not perfect
 
 Terminal 2: Run the frontend
 
-cd front
+cd Client
 ng serve (shortcut ng s --o)
 
 🛠 Database Configuration (SQLite)
