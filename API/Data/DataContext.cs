@@ -8,12 +8,17 @@ public class DataContext(DbContextOptions options) : DbContext(options)
     /// <summary>
     /// DbSet for Product, which is the entity for the Product table in the database.
     /// </summary>
-    public DbSet<Product> Products { get; set; }
+    public DbSet<Product> Products { get; set; }    
 
     /// <summary>
     /// DbSet for AppUser, which is the entity for the User table in the database.
     /// </summary>
     public DbSet<AppUser> Users { get; set; }
+
+    /// <summary>
+    /// DbSet for Basket, which is the entity for the Basket table in the database.
+    /// </summary>
+    public DbSet<Basket> Baskets { get; set; } // New Baskets table
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

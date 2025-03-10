@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { Component, inject, OnInit } from "@angular/core";
 import { Router, RouterModule } from "@angular/router";
 import { SplitterModule } from "primeng/splitter";
 import { ToolbarModule } from "primeng/toolbar";
@@ -14,34 +14,53 @@ import { InputTextModule } from "primeng/inputtext";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
   standalone: true,
-  imports: [InputTextModule, FormsModule,RouterModule, SplitterModule, ToolbarModule, PanelMenuComponent, ButtonModule]
+  imports: [
+    InputTextModule,
+    FormsModule,
+    RouterModule,
+    SplitterModule,
+    ToolbarModule,
+    PanelMenuComponent,
+    ButtonModule,
+  ],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   accountService = inject(AccountService);
-  private router = inject(Router)
-  
+  private router = inject(Router);
+
   model: User | any = {};
   username: string = "";
   title = "ALTEN SHOP";
 
+  ngOnInit(): void {
+    this.setCurrentUser();
+  }
+
   login() {
     this.accountService.login(this.model).subscribe({
       next: (response) => {
-      console.log('Logged in successfully');
-       void this.router.navigateByUrl('/home');  
+        console.log("Logged in successfully");
+        void this.router.navigateByUrl("/home");
       },
       error: (error) => {
         console.log(error.error);
       },
       complete: () => {
-        console.log('Completed');
-      }
+        console.log("Completed");
+      },
     });
   }
 
   logout() {
     this.accountService.logout();
-    console.log('Logged out successfully');
-    this.router.navigateByUrl('/');
+    console.log("Logged out successfully");
+    this.router.navigateByUrl("/");
+  }
+
+  private setCurrentUser() {
+    const userString = localStorage.getItem("user");
+    if (!userString) return;
+    const user = JSON.parse(userString);
+    this.accountService.currentUser.set(user);
   }
 }

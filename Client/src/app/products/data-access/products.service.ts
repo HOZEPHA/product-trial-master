@@ -34,7 +34,7 @@ import { environment } from "environments/environment";
     }
 
     public update(product: Product): Observable<boolean> {
-        return this.http.patch<boolean>(`${this.path + '/products'}/${product.id}`, product).pipe(
+        return this.http.put<boolean>(`${this.path + '/products'}/${product.id}`, product).pipe(
             catchError(() => {
                 return of(true);
             }),

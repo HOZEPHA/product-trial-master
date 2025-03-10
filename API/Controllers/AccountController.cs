@@ -41,7 +41,7 @@ public class AccountController(DataContext context, ITokenService tokenService) 
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
         var user = await context.Users.FirstOrDefaultAsync(u =>
-                          u.Email == loginDto.Email);
+                          u.Email.ToLower() == loginDto.Email.ToLower());
 
         if (user == null) return Unauthorized("Invalid email");
 
@@ -64,7 +64,7 @@ public class AccountController(DataContext context, ITokenService tokenService) 
 
     private async Task<bool> isUserExists(string Email)
     {
-        return await context.Users.AnyAsync(u => u.Email == Email);
+        return await context.Users.AnyAsync(u => u.Email.ToLower() == Email.ToLower());
     }
 }
 

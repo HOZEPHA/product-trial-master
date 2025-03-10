@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using API.Data;
 using API.Entities;
 using AutoMapper;
@@ -6,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
-
 public class ProductsController(DataContext context, IMapper mapper) : BaseApiController
 {
   /// <summary>
@@ -42,9 +42,18 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
 
   //TODO : Use CQRS pattern command to create a new product
   // PUT: api/products/1000
+
   [HttpPut("{id}")]
+
   public async Task<IActionResult> UpdateProduct(int id, Product updatedProduct)
   {
+    var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+    Console.WriteLine("User email: " + userEmail);
+    if (userEmail == null || userEmail != "admin@admin.fr")
+    {
+      return Unauthorized();
+    }
+
     if (id != updatedProduct.Id)
     {
       return BadRequest("Product ID mismatch");
@@ -68,6 +77,7 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
     product.InventoryStatus = updatedProduct.InventoryStatus;
     product.Rating = updatedProduct.Rating;
     product.UpdatedAt = DateTime.UtcNow;
+    product.CreatedAt = updatedProduct.CreatedAt;
 
     context.Products.Update(product); // Update the product in the database
     // Save changes to the database
@@ -88,7 +98,7 @@ public class ProductsController(DataContext context, IMapper mapper) : BaseApiCo
 
     product.CreatedAt = DateTime.UtcNow;
     product.UpdatedAt = DateTime.UtcNow;
-    
+
     context.Products.Add(product);
     await context.SaveChangesAsync();
 
