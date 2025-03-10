@@ -19,7 +19,9 @@ Powered by **.NET 9** for a robust and scalable backend.
 ![SQLite](https://img.shields.io/badge/Database-SQLite-blue?style=flat-square&logo=sqlite)  
 📌 When running the .NET Web API project, a **DBInitializer** provides:  
   - An initial list of products  
-  - An initial admin user to log in with: `admin@admin.fr / Admin1234`  
+  - An initial admin user to log in with: `admin@admin.fr / Admin1234`
+  - An initial Basket with the UserEmail admin@admin.fr with an Id 1
+  - An initial basketItem with a product code added to the Basket with an Id 1 1 
 
 ### 🎨 Frontend  
 ![Angular](https://img.shields.io/badge/Frontend-Angular%2018-red?style=flat-square&logo=angular)  
