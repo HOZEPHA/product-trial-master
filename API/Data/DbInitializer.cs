@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using API.Entities;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,7 +14,7 @@ public static class DbInitializer
         // Deleting all records from all tables. You can adjust this according to your needs.
         context.Products.RemoveRange(context.Products);
         context.Users.RemoveRange(context.Users);
-        
+
         await context.SaveChangesAsync();
     }
     public static async Task SeedAsync(DataContext context)
@@ -74,5 +75,40 @@ new Product { Code = "2c42cbvxc", Name = "Silver Necklace", Description = "A del
             await context.SaveChangesAsync();
         }
 
+        //Seed an item into the basket table
+        if (!context.Baskets.Any())
+        {
+            var user = await context.Users.FirstOrDefaultAsync(c => c.Email == "admin@admin.fr");
+            if (user == null)
+            {
+                throw new InvalidOperationException("User not found.");
+            }
+
+            var product = await context.Products.SingleOrDefaultAsync(c => c.Code == "f230fh0g3");
+            if (product == null)
+            {
+                throw new InvalidOperationException("Product not found.");
+            }
+
+            var basket = new Basket
+            {
+                BuyerEmail = user.Email,
+                BasketItem = new List<BasketItem>
+    {
+        new BasketItem
+        {
+            ProductId = product.Id,
+            Quantity = 1,
+            Price = product.Price,
+            ProductName = product.Name,
+            ImageUrl = product.Image
+        }
+    }
+            };
+
+            context.Baskets.Add(basket);
+            await context.SaveChangesAsync();
+
+        }
     }
 }

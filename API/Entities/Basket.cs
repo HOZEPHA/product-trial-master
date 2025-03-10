@@ -16,7 +16,7 @@ public class Basket
     /// <summary>
     /// This property is used to store the buyer's identifier.
     /// </summary>
-    public required string BuyerId { get; set; }
+    public required string BuyerEmail { get; set; }
 
     /// <summary>
     /// This property is used to store the list of items in the basket.
