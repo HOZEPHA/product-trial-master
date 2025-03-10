@@ -8,6 +8,7 @@ import {
 } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { Product } from "app/products/data-access/product.model";
+import { ProductListComponent } from "app/products/features/product-list/product-list.component";
 import { SelectItem } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { DropdownModule } from "primeng/dropdown";
@@ -57,7 +58,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
       </div>
       <div class="flex justify-content-between">
         <p-button type="button" (click)="onCancel()" label="Annuler" severity="help"/>
-        <p-button type="submit" [disabled]="!form.valid" label="Enregistrer" severity="success"/>
+        <p-button type="submit" [disabled]="!form.valid" label="{{isCreation() ? 'Créer' : 'Modifier'}}" severity="success"/>
       </div>
     </form>
   `,
@@ -78,6 +79,8 @@ export class ProductFormComponent {
 
   @Output() cancel = new EventEmitter<void>();
   @Output() save = new EventEmitter<Product>();
+
+ public isCreation = input.required<boolean>();
 
   public readonly editedProduct = computed(() => ({ ...this.product() }));
 
