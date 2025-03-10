@@ -4,7 +4,10 @@
     {{ title }}
   </div>
   <div class="p-toolbar-group-end">
-    <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+    <div class="cart-container">
+      <i class="pi pi-shopping-cart"></i>
+      <span class="cart-badge">3</span>
+    </div>
     @if(accountService.currentUser()) {
     <div dropdown class="dropdown">
       <a dropdownToggle class="dropdown-toggle text-light text-decoration-none">
