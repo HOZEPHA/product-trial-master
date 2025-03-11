@@ -1,8 +1,6 @@
 using System.Security.Cryptography;
 using System.Text;
 using API.Entities;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data;

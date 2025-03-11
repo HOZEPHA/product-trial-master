@@ -8,6 +8,7 @@ import { User } from "./account/_models/user";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
+import { BasketService } from "./basket/basket-service.service";
 
 @Component({
   selector: "app-root",
@@ -26,14 +27,17 @@ import { InputTextModule } from "primeng/inputtext";
 })
 export class AppComponent implements OnInit {
   accountService = inject(AccountService);
+  basketService = inject(BasketService);
   private router = inject(Router);
 
   model: User | any = {};
+  basketItemCount: number = 0;
   username: string = "";
   title = "ALTEN SHOP";
 
   ngOnInit(): void {
     this.setCurrentUser();
+    this.basketService.getBasketCount().subscribe();
   }
 
   login() {

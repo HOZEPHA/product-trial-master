@@ -1,8 +1,4 @@
-using System.Security.Claims;
 using API.Data;
-using API.Entities;
-using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

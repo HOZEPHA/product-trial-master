@@ -4,9 +4,9 @@
     {{ title }}
   </div>
   <div class="p-toolbar-group-end">
-    <div class="cart-container">
+    <div class="cart-container" style="margin-right: 10px;">
       <i class="pi pi-shopping-cart"></i>
-      <span class="cart-badge">3</span>
+      <span class="cart-badge">{{basketService.basketCount()}}</span>
     </div>
     @if(accountService.currentUser()) {
     <div dropdown class="dropdown">
@@ -40,7 +40,7 @@
           required="true"
           placeholder="Password"
           type="password"
-          placeholder="Normal"
+          placeholder="Password"
           style="margin-right: 5px;"
         />
         <p-button label="Login" type="submit" severity="success" />
