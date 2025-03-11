@@ -16,19 +16,22 @@ public class BasketController(DataContext context) : BaseApiController
     /// <param name="id"></param>
     /// <returns></returns>
     [HttpGet("itemCount")]
-    public async Task<ActionResult<Basket>> GetBasketCount()
+    public async Task<ActionResult<int>> GetBasketCount()
     {
         var basket = await context.Baskets
-    .Where(b => b.BuyerEmail == "admin@admin.fr")
-    .SelectMany(b => b.BasketItem) // Flatten BasketItem lists
-    .CountAsync(); // Count the total items
+            .Include(b => b.BasketItem) // Ensure related items are loaded
+            .FirstOrDefaultAsync(b => b.BuyerEmail == "admin@admin.fr"); // Check if basket exists
 
-        if (basket == 0)
+        if (basket == null)
         {
-            return NotFound();
+            return NotFound("Basket not found for the given buyer email.");
         }
-        return Ok(basket);
+
+        int itemCount = basket.BasketItem.Count; // Safely count items
+
+        return Ok(itemCount);
     }
+
 
 
 }
