@@ -15,17 +15,31 @@
       }}</span>
       <div class="text-lg font-medium text-900 mt-2">{{ product.name }}</div>
 
-      <ng-template pTemplate="footer">
+<ng-template pTemplate="footer">
         <div class="flex gap-3 mt-1">
           <p-button
             label="Modifier"
             severity="secondary"
+            [disabled]="accountService.currentUser()?.email !== 'admin@admin.fr'"
             (onClick)="onUpdate(product)"
           />
           <p-button
             label="Supprimer"
             severity="danger"
+            [disabled]="accountService.currentUser()?.email !== 'admin@admin.fr'"
             (onClick)="onDelete(product)"
+          />
+        </div>
+        <div class="flex gap-3 mt-1">
+          <p-button
+            label="Détails"
+            severity="primary"
+            (onClick)="seeProductDetail(product)"
+          />
+          <p-button
+            label="Ajouter au panier"
+            severity="success"
+            (onClick)="AddToCart(product)"
           />
         </div>
       </ng-template>

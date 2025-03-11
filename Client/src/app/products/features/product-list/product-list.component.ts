@@ -1,11 +1,12 @@
 import { Component, OnInit, inject, signal } from "@angular/core";
+import { AccountService } from "app/account/_services/account.service";
 import { Product } from "app/products/data-access/product.model";
 import { ProductsService } from "app/products/data-access/products.service";
 import { ProductFormComponent } from "app/products/ui/product-form/product-form.component";
 import { ButtonModule } from "primeng/button";
 import { CardModule } from "primeng/card";
-import { DataViewModule } from 'primeng/dataview';
-import { DialogModule } from 'primeng/dialog';
+import { DataViewModule } from "primeng/dataview";
+import { DialogModule } from "primeng/dialog";
 
 const emptyProduct: Product = {
   id: 0,
@@ -29,10 +30,18 @@ const emptyProduct: Product = {
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.scss"],
   standalone: true,
-  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent],
+  imports: [
+    DataViewModule,
+    CardModule,
+    ButtonModule,
+    DialogModule,
+    ProductFormComponent,
+  ],
 })
 export class ProductListComponent implements OnInit {
+
   private readonly productsService = inject(ProductsService);
+  accountService = inject(AccountService);
 
   public readonly products = this.productsService.products;
 
@@ -75,5 +84,12 @@ export class ProductListComponent implements OnInit {
 
   private closeDialog() {
     this.isDialogVisible = false;
+  }
+
+  AddToCart(_t9: any) {
+    console.log("product added to cart");
+  }
+  seeProductDetail(_t9: any) {
+    console.log("product detailed vieuw clicked");
   }
 }

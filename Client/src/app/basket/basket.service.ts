@@ -13,14 +13,23 @@ export class BasketService {
       private readonly path = environment.Apiurl;
       
       private readonly _basket = signal<BasketItem[]>([]);
-      public readonly basket = this._basket.asReadonly();
+      public basket = this._basket;
 
       
       
       private readonly _basketCount = signal<number>(0);
-      public readonly basketCount = this._basketCount.asReadonly();
 
   
+      public getBasketItems(): Observable<BasketItem[]> {
+        return this.http.get<BasketItem[]>(this.path + '/basket/items').pipe(
+            catchError((error) => {
+                return of([]);
+            }),
+            tap((basket) => this._basket.set(basket)),
+
+        );
+    }
+
       public getBasketCount(): Observable<number> {
           return this.http.get<number>(this.path + '/basket/itemCount').pipe(
               catchError((error) => {

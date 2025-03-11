@@ -1,4 +1,5 @@
 using API.Data;
+using API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +28,27 @@ public class BasketController(DataContext context) : BaseApiController
 
         return Ok(itemCount);
     }
+    [HttpGet("Items")]
+    public async Task<ActionResult<List<BasketItem>>> GetBasketItems()
+    {
+        var basket = await context.Baskets
+            .Include(b => b.BasketItem)
+            .FirstOrDefaultAsync(b => b.BuyerEmail == "admin@admin.fr");
 
+        if (basket == null || basket.BasketItem.Count == 0)
+        {
+            return NotFound("Basket is empty.");
+        }
 
+        var basketItems = basket.BasketItem.Select(item => new
+        {
+            item.Id,
+            item.ProductName,
+            item.Price,
+            item.Quantity
+        }).ToList();
+
+        return Ok(basketItems);
+    }
 
 }

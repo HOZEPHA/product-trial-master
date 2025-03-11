@@ -8,7 +8,7 @@ import { User } from "./account/_models/user";
 import { FormsModule } from "@angular/forms";
 import { ButtonModule } from "primeng/button";
 import { InputTextModule } from "primeng/inputtext";
-import { BasketService } from "./basket/basket-service.service";
+import { BasketService } from "./basket/basket.service";
 
 @Component({
   selector: "app-root",
@@ -31,9 +31,9 @@ export class AppComponent implements OnInit {
   private router = inject(Router);
 
   model: User | any = {};
-  basketItemCount: number = 0;
   username: string = "";
   title = "ALTEN SHOP";
+  public basketCount: number = 0;
 
   ngOnInit(): void {
     this.setCurrentUser();
@@ -45,6 +45,9 @@ export class AppComponent implements OnInit {
       next: (response) => {
         console.log("Logged in successfully");
         void this.router.navigateByUrl("/home");
+        this.basketService.getBasketCount().subscribe((count) => {
+          this.basketCount = count;
+        });
       },
       error: (error) => {
         console.log(error.error);
@@ -57,6 +60,9 @@ export class AppComponent implements OnInit {
 
   logout() {
     this.accountService.logout();
+    this.basketService.getBasketCount().subscribe((count) => {
+      this.basketCount = count;
+    });
     console.log("Logged out successfully");
     this.router.navigateByUrl("/");
   }

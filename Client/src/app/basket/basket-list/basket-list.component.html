@@ -1,1 +1,18 @@
-<p>basket-list works!</p>
+<div class="basket-container">
+    <h2>Your Basket</h2>
+  
+    @if (basketItems.length === 0) {
+      <div>Your basket is empty.</div>
+    } @else {
+      <ul>
+        @for (item of basketItems; track item.code) {
+          <li>
+            <span>{{ item.productName}}</span>
+            <span>Quantity: {{ item.quantity }}</span>
+            <span>Price: ${{ item.price }}</span>
+          </li>
+        }
+      </ul>
+    }
+  </div>
+  
